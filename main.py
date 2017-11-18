@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-## GPIO pins
+## GPIO pin state machine
 class Pins:
 	def __init__(self):
 		self.all = {}
@@ -33,8 +33,7 @@ def go_through_and_set_pins():
 def merge_two_dicts(original, new):
 	clone = original.copy()
 	clone.update(new)
-	merged = clone
-	return merged
+	return clone
 
 ## go through pins at bootup
 go_through_and_set_pins()
@@ -46,23 +45,20 @@ def hello():
 
 @app.route("/pins", methods=["POST"])
 def set_pins():
-	if request.method == "POST":
-		payload = {}
+	payload = {}
 
-		for k, v in request.get_json().items():
-			if v == "false" or False:
-				payload[int(k)] = False
-			else:
-				payload[int(k)] = True
+	for k, v in request.get_json().items():
+		if v == "false" or False:
+			payload[int(k)] = False
+		else:
+			payload[int(k)] = True
 
-		pins.set_all(
-			merge_two_dicts(pins.all, payload)
-		)
+	pins.set_all(
+		merge_two_dicts(pins.all, payload)
+	)
 
-		go_through_and_set_pins()
-		return jsonify(pins.all)
-	else:
-		return "please send a POST request"
+	go_through_and_set_pins()
+	return jsonify(pins.all)
 
 ## Cleanup GPIO on exit
 atexit.register(GPIO.cleanup)
