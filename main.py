@@ -50,7 +50,7 @@ def set_pins():
 		payload = {}
 
 		for k, v in request.get_json().items():
-			if v == "false":
+			if v == "false" or False:
 				payload[int(k)] = False
 			else:
 				payload[int(k)] = True
