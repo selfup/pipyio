@@ -1,4 +1,5 @@
 import atexit
+import config as pin_config
 import RPi.GPIO as GPIO
 
 from flask import Flask, jsonify, request
@@ -15,9 +16,7 @@ class Pins:
 
 pins = Pins()
 
-pins.set_all({
-  17: True,
-})
+pins.set_all(pin_config)
 
 GPIO.setmode(GPIO.BCM)
 
