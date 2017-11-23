@@ -3,7 +3,7 @@
 Python API for GPIO on the Raspberry Pi!
 
 1. `pip3 install flask`
-1. Run the API server: `./start.sh`
+1. Run the API server: `./scripts/start.sh`
 
 Once you have installed Flask, no need to do it again :tada:
 
@@ -17,7 +17,7 @@ To turn **off** pin 17 (default pin in config):
 
 `curl -d '{ "17": "false" }' -H "Content-Type: application/json" -X POST localhost:9001/pins`
 
-Stopping the server with `^C` (control + c) or any kind of SIG(KILL/TERM/INT) will reset GPIO state.
+Stopping the server with `^C` (control + c) will reset (wipe) GPIO state.
 
 ### Initial Pin State
 
@@ -57,9 +57,9 @@ Note that you do not need to initialize with all intended pins. Adding a new pin
 
 Then:
 
-`./screen_start.sh`
+`./scripts/bg.sh`
 
-If you need to shut the server down, simply call the shutdown script: `./shutdown.sh`
+If you need to shut the server down, simply call the shutdown script: `./scripts/shutdown.sh`
 
 ***
 
