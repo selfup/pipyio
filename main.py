@@ -2,22 +2,15 @@ import atexit, json
 import RPi.GPIO as GPIO
 
 from flask import Flask, jsonify, request
+from config import Config
+from pins import Pins
 
 app = Flask(__name__)
 
-## GPIO pin state machine
-class Pins:
-  def __init__(self):
-    self.all = {}
-
-  def set_all(self, pins):
-    self.all = pins
-
-with open('config.json') as json_data:
-  config = json.load(json_data)
-
 pins = Pins()
-pins.set_all(config)
+default_pins = Config().pins
+
+pins.set_all(default_pins)
 
 GPIO.setmode(GPIO.BCM)
 
