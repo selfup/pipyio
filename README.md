@@ -2,21 +2,18 @@
 
 Python API for GPIO on the Raspberry Pi!
 
-```bash
-pip3 install flask
-```
+1. `pip3 install flask`
+1. Run the API server: `./start.sh`
 
-Run the API server: `./start.sh`
-
-To turn on pin 17:
+To turn on pin 17 (default pin in config):
 
 `curl -d '{ "17": "true" }' -H "Content-Type: application/json" -X POST localhost:9001/pins`
 
-To turn off pin 17:
+To turn off pin 17 (default pin in config):
 
 `curl -d '{ "17": "false" }' -H "Content-Type: application/json" -X POST localhost:9001/pins`
 
-Stopping the server with `^C` or any kind of SIGKILL will reset GPIO state.
+Stopping the server with `^C` (control + c) or any kind of SIG(KILL/TERM/INT) will reset GPIO state.
 
 ### Initial Pin State
 
