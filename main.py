@@ -7,9 +7,9 @@ from lib.gpio import Gpio
 app = Flask(__name__)
 pins = Pins()
 gpio = Gpio()
-default_pins = Config().pins
+config = Config()
 
-pins.update(default_pins)
+pins.update(config.pins)
 gpio.set_pins(pins)
 
 @app.route("/")
