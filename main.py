@@ -31,7 +31,6 @@ def set_pins():
 
   return jsonify(pins.all)
 
-
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
   func = request.environ.get('werkzeug.server.shutdown')
