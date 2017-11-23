@@ -28,10 +28,14 @@ This file is located in: [`lib/config.py`](https://github.com/selfup/pipyio/blob
 Inside of the `__init__` method, there is a `self.pins` dictionary:
 
 ```python
-self.pins = {}
+self.pins = {
+  17: True,
+}
 ```
 
 That is the object/dictionary to modify.
+
+`True` means **on**, `False` would mean **off**.
 
 You can add pins as you please, just realize that the API is not meant for PWM or any fancy pins yet. So far these are just basic _on / off_ pins.
 
@@ -44,9 +48,5 @@ self.pins = {
   22: True,
 }
 ```
-
-`True` means **on**, `False` would mean **off**.
-
-***
 
 Note that you do not need to initialize with all intended pins. Adding a new pin via a POST request will automatically update internal state for the API.
