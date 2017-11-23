@@ -48,3 +48,5 @@ self.pins = {
   22: True,
 }
 ```
+
+Note that you do not need to initialize with all intended pins. Adding a new pin via a POST request will automatically update internal state for the API.
