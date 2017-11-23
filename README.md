@@ -17,3 +17,31 @@ To turn off pin 17:
 `curl -d '{ "17": "false" }' -H "Content-Type: application/json" -X POST localhost:9001/pins`
 
 Stopping the server with `^C` or any kind of SIGKILL will reset GPIO state.
+
+### Initial Pin State
+
+On bootup you can dictate which **BCM Pin #** will be _on or off_ by modifying the config class.
+
+Inside of the `__init__` method, there is a `self.pins` dictionary:
+
+```python
+self.pins = {
+  17: True,
+}
+```
+
+That is the object/dictionary to modify.
+
+`True` means **on**, `False` would mean **off**.
+
+You can add pins as you please, just realize that the API is not meant for PWM or any fancy pins yet. So far these are just basic _on / off_ pins.
+
+Example modified dictionary:
+
+```python
+self.pins = {
+  17: False,
+  27: False,
+  22: True,
+}
+```
