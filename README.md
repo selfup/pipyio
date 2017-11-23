@@ -5,6 +5,10 @@ Python API for GPIO on the Raspberry Pi!
 1. `pip3 install flask`
 1. Run the API server: `./start.sh`
 
+Once you have installed Flask, no need to do it again :tada:
+
+### The API
+
 To turn on pin 17 (default pin in config):
 
 `curl -d '{ "17": "true" }' -H "Content-Type: application/json" -X POST localhost:9001/pins`
