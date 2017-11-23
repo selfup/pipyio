@@ -30,3 +30,14 @@ def set_pins():
   gpio.set_pins(pins)
 
   return jsonify(pins.all)
+
+
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+  func = request.environ.get('werkzeug.server.shutdown')
+  
+  if func is None:
+    raise RuntimeError('Not running with the Werkzeug Server')
+  func()
+
+  return 'Wiping GPIO state... - Shutting down server...'
