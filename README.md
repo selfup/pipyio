@@ -22,6 +22,8 @@ Stopping the server with `^C` or any kind of SIGKILL will reset GPIO state.
 
 On bootup you can dictate which **BCM Pin #** will be _on or off_ by modifying the config class.
 
+This file is located in: [`lib/config.py`](https://github.com/selfup/pipyio/blob/master/lib/config.py)
+
 Inside of the `__init__` method, there is a `self.pins` dictionary:
 
 ```python
