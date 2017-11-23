@@ -13,7 +13,7 @@ pins.update(config.pins)
 gpio.set_pins(pins)
 
 @app.route("/")
-def hello():
+def root():
   return jsonify(pins.all)
 
 @app.route("/pins", methods=["POST"])
