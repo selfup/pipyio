@@ -40,4 +40,4 @@ def shutdown():
     raise RuntimeError('Not running with the Werkzeug Server')
   func()
 
-  return 'Wiping GPIO state... - Shutting down server...'
+  return '   Wiping GPIO state and shutting down server...\n\n'

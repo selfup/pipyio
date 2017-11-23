@@ -50,3 +50,17 @@ self.pins = {
 ```
 
 Note that you do not need to initialize with all intended pins. Adding a new pin via a POST request will automatically update internal state for the API.
+
+### Running in the background
+
+`sudo apt install screen -y`
+
+Then:
+
+`./screen_start.sh`
+
+If you need to shut the server down, simply call the shutdown script: `./shutdown.sh`
+
+***
+
+Happy Hacking! :smile:
