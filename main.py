@@ -1,42 +1,16 @@
-import atexit, json
-import RPi.GPIO as GPIO
-
 from flask import Flask, jsonify, request
 
+from lib.config import Config
+from lib.pins import Pins
+from lib.gpio import Gpio
+
 app = Flask(__name__)
-
-## GPIO pin state machine
-class Pins:
-  def __init__(self):
-    self.all = {}
-
-  def set_all(self, pins):
-    self.all = pins
-
-with open('config.json') as json_data:
-  config = json.load(json_data)
-
 pins = Pins()
-pins.set_all(config)
+gpio = Gpio()
+default_pins = Config().pins
 
-GPIO.setmode(GPIO.BCM)
-
-## Go through pins and set them to out as default
-def go_through_and_set_pins():
-  for k, v in pins.all.items():
-    GPIO.setup(int(k), GPIO.OUT)
-    if bool(v):
-      GPIO.output(int(k), GPIO.HIGH)
-    else:
-      GPIO.output(int(k), GPIO.LOW)
-
-def merge_two_dicts(original, new):
-  clone = original.copy()
-  clone.update(new)
-  return clone
-
-## go through pins at bootup
-go_through_and_set_pins()
+pins.update(default_pins)
+gpio.set_pins(pins)
 
 @app.route("/")
 def hello():
@@ -52,12 +26,7 @@ def set_pins():
     else:
       payload[int(k)] = True
 
-  pins.set_all(
-    merge_two_dicts(pins.all, payload)
-  )
+  pins.update(payload)
+  gpio.set_pins(pins)
 
-  go_through_and_set_pins()
   return jsonify(pins.all)
-
-## Cleanup GPIO on exit
-atexit.register(GPIO.cleanup)
