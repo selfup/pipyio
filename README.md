@@ -51,6 +51,8 @@ self.pins = {
 
 Note that you do not need to initialize with all intended pins. Adding a new pin via a POST request will automatically update internal state for the API.
 
+Here is a great diagram of the pins: ![](https://pinout.xyz/resources/raspberry-pi-pinout.png)
+
 ### Running in the background
 
 `sudo apt install screen -y`
