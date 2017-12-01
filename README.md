@@ -2,6 +2,8 @@
 
 Python API for GPIO on the Raspberry Pi!
 
+On a **Raspberry Pi 2 B+/3**
+
 1. `pip3 install flask`
 1. Run the API server: `./scripts/start.sh`
 
